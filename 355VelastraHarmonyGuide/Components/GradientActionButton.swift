@@ -18,11 +18,13 @@ struct GradientActionButton: View {
             .padding(.vertical, 14)
             .background(
                 LinearGradient(
-                    colors: [Color("AppPrimary"), Color("AppAccent")],
+                    colors: [
+                        Color("AppPrimary").opacity(isEnabled ? 1 : 0.4),
+                        Color("AppAccent").opacity(isEnabled ? 1 : 0.4)
+                    ],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
-                .opacity(isEnabled ? 1 : 0.4)
             )
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         }
