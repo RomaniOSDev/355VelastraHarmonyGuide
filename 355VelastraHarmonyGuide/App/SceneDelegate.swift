@@ -1,15 +1,14 @@
 import UIKit
-import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    private var launchFlowResolver: LaunchFlowResolver?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let host = UIHostingController(rootView: ContentView())
-        host.view.backgroundColor = .clear
-        window?.rootViewController = host
+        launchFlowResolver = LaunchFlowResolver(window: window)
+        window?.rootViewController = launchFlowResolver?.resolveEntryViewController()
         window?.backgroundColor = UIColor(red: 0.12, green: 0.07, blue: 0.08, alpha: 1)
         window?.makeKeyAndVisible()
         installKeyboardDismiss()
